@@ -1,0 +1,96 @@
+"morse" - Morse Training Software for Linux
+-------------------------------------------
+
+(C) 2000 Matt J. Gumbley, G7JFJ
+
+This package contains several programs and Perl scripts which might help you to
+learn Morse code. I wrote this code to help me through the RSGB's 12 WPM Morse
+test, after a conversation with my instructor at Maidstone Amateur Radio
+Society, Colin Wilson. Colin's training in the services amounted to
+"brainwashing" - a letter would flash up on a screen with the appropriate Morse
+character being sent - at high speed.
+
+One problem I have when reading Morse is that I occasionally stumble over a
+character, and by the time I've worked it out, I've missed the rest of the word.
+The translation has to be automatic; unconscious.
+
+To this end, I wrote these tools....
+
+
+PREREQUISITES
+-------------
+You need a working sound card. I can't go into this in any depth here - you must
+have /dev/dsp - that's all. See the Sound-HOWTO.
+
+For the Perl scripts, you need several CPAN modules installing.
+
+
+EXECUTABLES
+-----------
+(You need to build these before anything will happen: just type 'make')
+
+typemorse: use at the end of a pipeline to convert text into Morse:
+typemorse < qso.txt
+
+brainwash:  sends random characters from the entire set; can be hacked to send a
+limited set - the ones you're stuck on.
+
+
+PERL SCRIPTS
+------------
+words.pl - needs /usr/dict/words and 'typemorse' building. Sends words of
+increasing size, so you get to train your ability to decode and string
+characters together simultaneously. (I can get individual characters most of the
+time, but trying to put them together into a word hasn't quite become automatic
+yet!)
+
+histo.pl - don't bother with this, it just dumps out a file as an "oscilloscope
+view" - I use it to verify that the waveforms for dit and dah are "nice".
+
+brainwashgui.pl - needs 'brainwash' built, and Perl/Tk installing. Displays the
+output of 'brainwash' in a big window. Maximise the window, turn the lights off,
+and let it just flow into your subconscious.... you are programmed to receive!
+
+
+LIBRARY
+-------
+'morse.o' and 'morse.h' can be used as a Morse library - feel free to add Morse
+support to all your software !
+
+
+WAVEFORMS
+---------
+After you run any of the executables, you'll get two files generated: dit and
+dah - they're the waveforms I use (8kHz, 8-bit). They're not particularly
+wonderful, so if you can come up with a better generation algorithm than
+gensample() in morse.c, please let me know.
+
+
+LICENSE
+-------
+The software is released under the GNU General Public License.
+
+
+TODO
+----
+* Write a GUI front end for everything; configuration, etc.
+* Get the executables reading configuration from a file.
+* Write a 'big letters' output program (like banner) for those that don't have
+  Perl/Tk 
+* Add some slight delays to make it sound more 'natural'
+* There's a hook for generating white noise (see morse.c) - why not add in a
+  battery of effects? I'm told there's a CW Pileup program that is good in this
+  respect. (I can imagine clicking radio buttons: 'Deep QRM' / 'Dellinger
+  Fade-Out' / 'Operator has the Shakes' ;-) )
+
+FINALLY....
+-----------
+Thanks to Colin Wilson G0VAR for the idea, and good luck in your Morse training!
+
+73,
+Matt Gumbley, G7JFJ
+matt@gumbley.demon.co.uk
+http://www.gumbley.demon.co.uk/amateur.html
+
+
+
